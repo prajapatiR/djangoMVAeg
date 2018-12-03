@@ -1,0 +1,26 @@
+{% extends 'app/layout.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-3"> <strong>Title:</strong></div>
+  <div class="col-md-9">{{ object.title }}</div>
+</div>
+<div class="row">
+  <div class="col-md-3"> <strong>Abstract:</strong></div>
+  <div class="col-md-9">{{ object.abstract }}</div>
+</div>
+<div class="row">
+  <div class="col-md-3"> Speaker </div>
+  <div class="col-md-9">{{ object.speaker }}</div>
+</div>
+<div class="row">
+  <div class="col-md-3"> Speaker </div>
+  <div class="col-md-9"> <img src= "{{ object.speaker.picture.url }}" alt="nope "> </div>
+</div>
+<div class="row">
+  <a href="{% url 'app:session_list' %}">
+    <p>Back to session list.</p>
+  </a>
+
+</div>
+{% endblock %}

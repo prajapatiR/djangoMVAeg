@@ -1,0 +1,54 @@
+{% extends 'app/layout.html' %}
+{% block content %}
+<form class="row" method="post" style="box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);padding-left: 20px;padding-bottom:20px;padding-top:20px; background-color:#fff;">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-10">
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault01">First name:</label>
+          <input type="text" class="form-control" name="firstName" id="validationDefault01" placeholder="First name"  required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault02">Last name:</label>
+          <input type="text" class="form-control" name="lastName" id="validationDefault02" placeholder="Last name"  required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault02">Username <small>(must be unique):</small></label>
+          <input type="text" class="form-control" name="username" id="validationDefault02" placeholder="Last name"  required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault02">Email Id:</label>
+          <input type="text" class="form-control" name="email" id="validationDefault02" placeholder="Last name"  required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault02">Password:</label>
+          <input type="password" class="form-control" name="password" id="pass1"  placeholder="Enter your password" onkeyup='check();' required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationDefault02">Confirm Password:</label><span id='message'></span>
+          <input type="password" class="form-control" id="pass2" placeholder="Re-enter password" onkeyup='check();' required>
+        </div>
+      </div>
+    </div>
+  </div>
+<button class="btn btn-raised btn-block btn-danger" type="submit" style="width:40%;" >Join Now</button>
+</form>
+<script type="text/javascript">
+var check = function() {
+  if (document.getElementById('pass1').value ==
+    document.getElementById('pass2').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+
+</script>
+
+
+
+
+{% endblock %}

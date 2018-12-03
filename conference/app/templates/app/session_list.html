@@ -1,0 +1,56 @@
+{% extends 'app/layout.html' %}
+{% block content %}
+{% load staticfiles %}
+{% if object_list %}
+<div class="container" >
+  {% for session in object_list %}
+    <div class="row" style="box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2); padding-bottom:20px;padding-top:20px; background-color:#fff;">
+      <div class="col-md-8">
+        <div class="col-xs-12" style="padding-bottom:15px;">
+          <h3><a style="color:Black" href="{% url 'app:session_detail' session.pk %}">{{ session.title }}</a></h3><small>{{ session.going }} are going</small>
+        </div>
+        <div class="col-xs-12"style="padding-bottom:15px;">
+          <p style="display:inline">{{ session.abstract|slice:":50" }}...</p>
+          <a href="{% url 'app:session_detail' session.pk %}"=>Learn Details</a>
+        </div>
+
+      </div>
+      {% if user.is_authenticated %}
+        <div class="row">
+          <div class="col-sm-6">
+            <button style="width:100%;" type="button" class="btn btn-warning">
+            <a style="color:Black;" href="{% url 'app:session_update' session.id %}">Update</a>
+            </button>
+          </div>
+          <div class="col-sm-6">
+            <button style="width:100%; " type="button" class="btn btn-danger">
+            <a style="color:white;" href="{% url 'app:session_delete' session.pk %}">Delete</a>
+            </button>
+          </div>
+          <div class="col-sm-12">
+            <button style="width:100%; " type="button" class="btn btn-success">
+            <a style="color:white;" href="{% url 'app:interested' session.pk %}">Interested</a>
+            </button>
+          </div>
+      {% else %}
+      <div class="col-sm-12">
+        <button style="width:100%; " type="button" class="btn btn-success">
+        <a style="color:white;" href="{% url 'app:session_delete' session.pk %}">Interested</a>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</div>
+{% else %}
+<h5>Sorry Nothing Here</h5>
+{% endif %}
+<div class="button-group-area mt-10">
+  <button type="button" class="btn btn-primary">
+    <a style="color:white"href="{% url 'app:session_list' %}" class="genric-btn info-border circle">Refresh</a>
+  </button>
+</div>
+{% endblock %}
+<div >
